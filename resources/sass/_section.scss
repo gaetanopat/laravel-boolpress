@@ -1,0 +1,67 @@
+section.show-all-posts{
+  min-height: calc(100vh - #{$header_height} - #{$footer_height});
+  h3{
+    margin: 20px 0;
+    text-align: center;
+  }
+  a.btn-primary{
+    margin: 20px 0;
+  }
+  .form_delete{
+    display: inline;
+    input[type="submit"]{
+      color: #007bff;
+      text-decoration: none;
+      background-color: transparent;
+      border: none;
+      &:hover{
+        color: #0056b3;
+        text-decoration: underline;
+      }
+    }
+  }
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  td, th {
+    border-top: 1px solid #a7b8d6;
+    border-bottom: 1px solid #a7b8d6;
+    text-align: left;
+    padding: 6px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dfe5ed;
+  }
+  td.no_posts{
+    background-color: white;
+    border-bottom: none;
+  }
+}
+
+// per tutte le altre sezioni, visualizzazione, modifica, cancellazione
+section.show-single-post{
+  min-height: calc(100vh - #{$header_height} - #{$footer_height});
+  .container{
+    min-height: calc(100vh - #{$header_height} - #{$footer_height});
+    h4{
+      margin-bottom: 20px;
+    }
+    .btn{
+      margin-top: 15px;
+    }
+  }
+}
+
+section.section-flex{
+  .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
