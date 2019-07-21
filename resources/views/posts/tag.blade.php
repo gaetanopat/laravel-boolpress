@@ -22,7 +22,7 @@
         </tbody>
         @empty
           <tr colspan="3">
-            <td>Non ci sono posts per questa categoria</td>
+            <td>Non ci sono posts per questo tag</td>
           </tr>
         @endforelse
       </table>
