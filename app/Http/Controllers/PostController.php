@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -23,5 +24,14 @@ class PostController extends Controller
       };
       $posts = $category->posts;   // recupero tutti i post che hanno quella categoria
       return view('posts.category')->with(['posts' => $posts, 'category' => $category]);
+    }
+
+    public function showTag($slug){
+      $tag = Tag::where('slug', $slug)->first();
+      if (empty($tag)) {
+        abort(404);
+      };
+      $posts = $tag->posts;   // recupero tutti i post che hanno quella categoria
+      return view('posts.tag')->with(['posts' => $posts, 'tag' => $tag]);
     }
 }

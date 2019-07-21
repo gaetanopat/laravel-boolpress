@@ -17,6 +17,12 @@
           @if(!empty($post->category))
             <li class="list-group-item"><strong>Categoria:</strong> <a href="{{ route('categories.show', $post->category->slug) }}">{{ $post->category->name }}</a></li>
           @endif
+          @if(($post->tags)->isNotEmpty())
+            <li class="list-group-item"><strong>Tags: </strong>
+            @foreach ($post->tags as $tag)
+              <a href=" {{ route('tags.show', $tag->slug )}}">{{ $tag->name }}@if(!$loop->last), @endif</a>
+            @endforeach
+          @endif
           <li class="list-group-item"><strong>Creato il:</strong> {{ $post->created_at }}</li>
           <li class="list-group-item"><strong>Aggiornato il:</strong> {{ $post->updated_at }}</li>
         </ul>

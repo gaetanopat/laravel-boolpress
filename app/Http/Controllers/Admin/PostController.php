@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\Category;
+use App\Tag;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -19,7 +20,8 @@ class PostController extends Controller
     public function create()
     {
       $categories = Category::all();
-      return view('admin.posts.create', compact('categories'));
+      $tags = Tag::all();
+      return view('admin.posts.create')->with(['categories' => $categories, 'tags' => $tags]);
     }
 
     public function store(Request $request)
@@ -39,9 +41,16 @@ class PostController extends Controller
 
       $dati = $request->all();
       $dati['slug'] = Str::slug($dati['title']);
+      // recupero la categoria selezionata
+      $category = Category::find($dati['category_id']);
+      if(empty($category)){
+        unset($dati['category_id']);
+      }
       $new_post = new Post();
       $new_post->fill($dati);
       $new_post->save();
+
+      $new_post->tags()->sync($dati['tags']);
       return redirect()->route('admin.posts.index');
     }
 
@@ -58,7 +67,8 @@ class PostController extends Controller
     {
       $post = Post::find($post_id);
       $categories = Category::all();
-      $data = ['post' => $post, 'categories' => $categories];
+      $tags = Tag::all();
+      $data = ['post' => $post, 'categories' => $categories, 'tags' => $tags];
       if(empty($post)){
         abort(404);
       }
@@ -83,7 +93,15 @@ class PostController extends Controller
 
       $dati = $request->all();
       $dati['slug'] = Str::slug($dati['title']);
+      // recupero la categoria selezionata
+      $category = Category::find($dati['category_id']);
+      if(empty($category)){
+        unset($dati['category_id']);
+      }
+
+      $post->tags()->sync($dati['tags']);
       $post->update($dati);
+
       return redirect()->route('admin.posts.index');
     }
 

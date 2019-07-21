@@ -47,6 +47,12 @@
             @endforeach
           </select>
         </div>
+        <div class="form-group">
+          <label>Tag: </label>
+          @foreach ($tags as $tag)
+            <label><input type="checkbox" name="tags[]" value="{{ $tag->id }}"> {{ $tag->name }}</label>
+          @endforeach
+        </div>
         <div class="form-group text-center">
           <input type="submit" value="Crea" class="btn btn-primary mr-2">
           <a href="{{ route('admin.posts.index') }}" class="btn btn-primary">Torna alla Home</a>

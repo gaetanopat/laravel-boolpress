@@ -14,6 +14,7 @@
           <th class="text-center">Autore</th>
           <th class="text-center">Slug</th>
           <th class="text-center">Categoria</th>
+          <th class="text-center">Tags</th>
           <th class="text-center">Creato il</th>
           <th class="text-center">Aggiornato il</th>
           <th class="text-center">Actions</th>
@@ -27,6 +28,15 @@
           <td class="text-center">
             @if(!empty($post->category))
               <a href="{{ route('categories.show', $post->category->slug) }}">{{ $post->category->name }}</a>
+            @else
+              Non disponibile
+            @endif
+          </td>
+          <td class="text-center">
+            @if(($post->tags)->isNotEmpty())
+              @foreach ($post->tags as $tag)
+                <a href=" {{ route('tags.show', $tag->slug )}}">{{ $tag->name }}@if(!$loop->last), @endif</a>
+              @endforeach
             @else
               Non disponibile
             @endif

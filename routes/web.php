@@ -16,7 +16,8 @@
 // });
 
 Auth::routes();       // insieme di rotte per l'autenticazione
-// in Auth::route(['register' => false]) per togliere la possibilità di registrarsi oppure in app.blade.php posso commentare
+// in Auth::route(['register' => false]) per togliere la possibilità di registrarsi oppure
+// in app.blade.php posso commentare
 // @if (Route::has('register'))
 //     <li class="nav-item">
 //         <a class="nav-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
@@ -37,3 +38,4 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('posts/{slug}', 'PostController@show')->name('posts.show');   // {slug} è quello che andrò in PostController.php del front office come parametro in public show($slug)
 
 Route::get('categories/{slug}', 'PostController@showCategory')->name('categories.show');
+Route::get('tags/{slug}', 'PostController@showTag')->name('tags.show');
