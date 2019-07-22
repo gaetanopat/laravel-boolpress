@@ -51,7 +51,10 @@
         <div class="form-group">
           <label>Tag: </label>
           @foreach ($tags as $tag)
-            <label><input type="checkbox" name="tags[]" value="{{ $tag->id }}"> {{ $tag->name }}</label>
+            @php
+              $array = ($post->tags)->pluck('id')->toArray();
+            @endphp
+            <label><input type="checkbox" name="tags[]" value="{{ $tag->id }}" {{ (in_array($tag->id, old('tags', $array)) ) ? 'checked' : '' }}> {{ $tag->name }} </label>
           @endforeach
         </div>
         <div class="form-group text-center">

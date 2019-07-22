@@ -8,7 +8,7 @@ use App\Post;
 class HomeController extends Controller
 {
     public function index(){
-      $all_posts = Post::all();
+      $all_posts = Post::orderBy('title', 'ASC')->paginate(15);
       return view('home', compact('all_posts'));    // oppure return view('home')->with(['all_posts' => $all_posts]);
     }
 }

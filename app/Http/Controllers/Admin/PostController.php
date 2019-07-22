@@ -49,8 +49,9 @@ class PostController extends Controller
       $new_post = new Post();
       $new_post->fill($dati);
       $new_post->save();
-
-      $new_post->tags()->sync($dati['tags']);
+      if(!empty($dati['tags'])){
+        $new_post->tags()->sync($dati['tags']);
+      }
       return redirect()->route('admin.posts.index');
     }
 
@@ -99,7 +100,9 @@ class PostController extends Controller
         unset($dati['category_id']);
       }
 
-      $post->tags()->sync($dati['tags']);
+      if(!empty($dati['tags'])){
+        $post->tags()->sync($dati['tags']);
+      }
       $post->update($dati);
 
       return redirect()->route('admin.posts.index');

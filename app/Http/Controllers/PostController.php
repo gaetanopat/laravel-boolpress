@@ -31,7 +31,7 @@ class PostController extends Controller
       if (empty($tag)) {
         abort(404);
       };
-      $posts = $tag->posts;   // recupero tutti i post che hanno quella categoria
+      $posts = $tag->posts;   // recupero tutti i post che hanno quel tag
       return view('posts.tag')->with(['posts' => $posts, 'tag' => $tag]);
     }
 }

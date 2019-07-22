@@ -4,7 +4,7 @@
   <section class="show-all-posts">
     <div class="container pt-4 pb-4">
       <h1>Lista dei Posts</h1>
-      <table class="table">
+      <table class="table mb-3">
         <thead class="thead-dark">
           <tr>
             <th scope="col" class="text-center">Titolo</th>
@@ -44,6 +44,7 @@
           </tr>
         @endforelse
       </table>
+      {{ $all_posts->links() }}
     </div>
   </section>
 @endsection
